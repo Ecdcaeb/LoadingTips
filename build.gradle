@@ -68,7 +68,6 @@ processResources {
 jar {
 	manifest {
 		attributes 'FMLCorePlugin': 'me.modmuss50.loadingtips.core.LoadingPlugin'
-		attributes 'FMLCorePluginContainsFMLMod': 'true'
 	}
 }
 
