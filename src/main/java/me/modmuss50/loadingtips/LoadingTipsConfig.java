@@ -1,5 +1,7 @@
 package me.modmuss50.loadingtips;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -50,8 +52,12 @@ public class LoadingTipsConfig {
 		new Thread(() -> {
 			try {
 				String onlineJson = IOUtils.toString(new URL(url), StandardCharsets.UTF_8);
-				onlineTips = GSON.fromJson(onlineJson, new TypeToken<List<String>>() {
-				}.getType());
+				JsonArray jsonArray = (JsonArray) new JsonParser().parse(s);
+				int size = array.size();
+        			onlineTips = new ArrayList<String>(size);
+        			for(int i = 0; i < size; i++){
+            				onlineTips.set(i, array.get(i).getAsString());
+        			}
 				refreshList = true;
 				complete.run();
 			} catch (Exception e) {
